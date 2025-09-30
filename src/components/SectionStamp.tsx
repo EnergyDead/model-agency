@@ -17,7 +17,7 @@ export default function SectionStamp() {
                     <div className="stamp__ring">
                         <div className="stamp__circular2">
                             <CircularText
-                                text="MODEL*BOOBS*MONEY*"
+                                text="TECH*NETWORK*MONEY*"
                                 onHover="speedUp"
                                 spinDuration={40}
                                 className="stamp__circular"

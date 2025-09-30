@@ -6,17 +6,26 @@ export default function SectionAbout() {
             <div className="about__inner">
                 <h2 className="about__title">Where talent meets limitless connections.</h2>
                 <p className="about__text">
-                    Collins Model Agency is a renowned brand in the fashion industry,
-                    known for discovering and nurturing top-tier models. With a
-                    reputation for excellence and innovation, Collins Model Agency has
-                    become a go-to choice for top fashion houses, designers, and
-                    photographers worldwide. Their models are not only stunningly
-                    beautiful but also possess a unique blend of talent, charisma, and
-                    professionalism that sets them apart from the rest. Collins Model
-                    Agency’s commitment to providing exceptional service and support to
-                    their models has earned them a loyal following in the industry,
-                    making them a trusted partner for anyone looking to elevate their
-                    fashion brand.
+                    We are building a universal ecosystem for models that operates 24/7, free from the limitations of
+                    traditional agencies. At the core is automation of traffic flows: intelligent algorithms channel
+                    inbound and outbound opportunities, mapping smart routes between brands, models, and influencers.
+                </p>
+                <p className="about__text">
+                    Conventional agencies rely on manual processes and closed networks. Neo Models shifts the paradigm
+                    through technology and transparency: every opportunity is captured in the system, every interaction
+                    is scalable. Networking becomes a continuous process where time zones and geography no longer
+                    matter.
+                </p>
+                <p className="about__text">
+                    Automation + community = a new industry standard.
+                    We remove entry barriers and generate a constant stream of opportunities — from local shoots to
+                    global partnerships. For models, this means independence and flexibility. For brands, it means
+                    direct access to a living network of talent where every connection is backed by data and outcomes.
+                </p>
+                <p className="about__text">
+                    Neo Models is not just an agency. It’s a network that works for you while you sleep. It is the
+                    digital compass of fashion — everything aligned around one idea: freedom of choice, open access, and
+                    limitless points of connection.
                 </p>
             </div>
         </section>
