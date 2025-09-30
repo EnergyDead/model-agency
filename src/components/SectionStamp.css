@@ -1,5 +1,5 @@
 :root {
-    --bg: #171717;
+    --bg: #000000;
     --text: #fff;
     --muted: #cfcfcf;
     --gutter: clamp(16px, 4vw, 48px);

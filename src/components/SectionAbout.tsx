@@ -1,3 +1,5 @@
+import girl from "../assets/girl-one.png";
+import girl2 from "../assets/girl-two.png";
 import "./SectionAbout.css";
 import DecryptedText from "./DecryptedText";
 
@@ -98,6 +100,11 @@ export default function SectionAbout() {
                         className="about__text"
                     />
                 </div>
+            </div>
+
+            <img src={girl} alt="" aria-hidden className="about__art"/>
+            <div className="about__art about__art--two" aria-hidden>
+                <img src={girl2} alt="" className="about__art-img"/>
             </div>
         </section>
     );

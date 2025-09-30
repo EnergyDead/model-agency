@@ -1,5 +1,5 @@
 import "./SectionBillboard.css";
-import hero from "../assets/billboard.jpg";
+import hero from "../assets/billboard.png";
 import heroMob from "../assets/billboard-mob.png";
 
 export default function SectionBillboard() {

@@ -1,9 +1,10 @@
 :root {
-    --page-bg: #171717;
+    --page-bg: #000000;
     --text: #eaeaea;
     --muted: #bdbdbd;
     --container: 1120px;
     --gap: clamp(24px, 4vw, 48px);
+    --about-art-size: clamp(420px, 40vw,720px);
 }
 
 .about {
@@ -54,3 +55,74 @@
     color: var(--muted);
     font: 400 clamp(14px, 1.25vw, 16px)/1.75 "Inter", system-ui, sans-serif;
 }
+
+/* слой текста выше картинки */
+.about {
+    position: relative;
+    overflow: clip;
+}
+
+.about__inner {
+    position: relative;
+    z-index: 2; /* текст поверх */
+    padding-bottom: clamp(40px, 8vw, 140px);
+}
+
+/* арт — за текстом, меньше и повернут */
+.about__art {
+    position: absolute;
+    right: clamp(140px, 30vw, 550px); /* чуть правее (можно уменьшить/увеличить) */
+    bottom: clamp(-6px, -1vw, -12px); /* чуть выше (минус — вверх) */
+    width: var(--about-art-size);
+    height: auto;
+    z-index: 1; /* ниже текста */
+    pointer-events: none;
+    user-select: none;
+
+    transform-origin: 100% 100%; /* вращаем от правого нижнего угла */
+    transform: rotate(25deg) scale(0.5) translate(12%, -8%);
+    /* при необходимости подсади/отодвинь тоньше через translate(X%, Y%) */
+    filter: contrast(1.05) saturate(0.95);
+}
+
+/* градиент-оверлей, который темнит к низу */
+.about__art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 35%,
+            rgba(0, 0, 0, 0.35) 70%,
+            rgba(0, 0, 0, 0.6) 100%
+    );
+    mix-blend-mode: multiply;
+}
+
+/* Вариант №2 — левее и немного выше центра, под текстом */
+.about__art--two {
+    position: absolute;
+    top: 5%; /* чуть выше середины секции */
+    left: clamp(40px, 18vw, 480px); /* левее центра */
+    width: var(--about-art-size);
+    z-index: 1; /* под текстом */
+    transform-origin: 50% 50%;
+    transform: rotate(-12deg) scale(0.52) translate(-12%, -28%);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* можно чуть сильнее притемнить низ у второго кадра */
+.about__art--two::after {
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.35) 75%,
+            rgba(0, 0, 0, 0.6) 100%
+    );
+}
+@media (max-width: 1100px) {
+    .about__art--two { display: none; }
+}
+
