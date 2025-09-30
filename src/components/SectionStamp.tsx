@@ -1,6 +1,6 @@
 import CircularText from "./CircularText";
 import "./SectionStamp.css";
-import LogoLockup from "./LogoLockup.tsx";
+import LogoLockup from "./LogoLockup";
 
 export default function SectionStamp() {
     return (

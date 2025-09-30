@@ -1,5 +1,5 @@
 import "./SectionAbout.css";
-import DecryptedText from "./DecryptedText.tsx";
+import DecryptedText from "./DecryptedText";
 
 export default function SectionAbout() {
     return (
