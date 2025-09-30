@@ -1,0 +1,57 @@
+:root {
+    --footer-bg: #171717;
+    --text: #fff;
+    --muted: #cfcfcf;
+    --container: min(900px, 92vw);
+}
+
+.footer {
+    background: var(--footer-bg); /* не на весь экран — просто блок */
+    color: var(--text);
+    border-top: 1px solid rgba(255, 255, 255, .06);
+}
+
+.footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    text-align: center;
+    padding: clamp(28px, 6vw, 56px) 16px; /* компактный вертикальный паддинг */
+}
+
+.footer__heading {
+    font: 700 clamp(12px, 1.4vw, 14px)/1 "Inter", system-ui, sans-serif;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    opacity: .9;
+}
+
+.footer__name {
+    margin-top: 6px;
+    font: 500 clamp(16px, 2vw, 20px)/1.4 "Inter", system-ui, sans-serif;
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: clamp(12px, 3vw, 18px) auto 0;
+    display: grid;
+    gap: clamp(6px, 1.2vw, 10px);
+    color: var(--muted);
+    font: 500 clamp(12px, 1.6vw, 14px)/1.6 "Inter", system-ui, sans-serif;
+}
+
+.footer__label {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.footer a:hover {
+    color: var(--text);
+    border-bottom-color: rgba(255, 255, 255, .25);
+}

@@ -1,0 +1,100 @@
+:root {
+    --bg: #171717;
+    --text: #fff;
+    --muted: #cfcfcf;
+    --gutter: clamp(16px, 4vw, 48px);
+}
+
+/* секция на весь экран */
+.stamp {
+    min-height: 100svh;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* 2 колонки */
+.stamp__grid {
+    max-width: 1280px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 4vw, 48px);
+    align-items: center;
+}
+
+/* ===== LEFT ===== */
+.stamp__left {
+    display: grid;
+    align-items: center; /* вертикаль */
+    justify-items: start; /* горизонталь */
+}
+
+.stamp__copy {
+    max-width: 520px;
+}
+
+.stamp__title {
+    margin: 0 0 10px;
+    font: 700 clamp(12px, 1.6vw, 18px)/1.2 "Inter", system-ui, sans-serif; /* было 16–22 */
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.stamp__text {
+    margin: 0;
+    color: var(--muted);
+    font: 400 clamp(12px, 1.1vw, 15px)/1.65 "Inter", system-ui, sans-serif; /* было 14–16 */
+}
+
+/* ===== RIGHT ===== */
+.stamp__right {
+    display: grid;
+    align-content: center;
+}
+
+.stamp__ring {
+    position: relative;
+    width: clamp(240px, 28vw, 340px);
+    height: clamp(240px, 28vw, 340px);
+    margin: 0 auto;
+}
+
+.stamp__circular {
+    position: absolute;
+    inset: 0;
+}
+
+/* сдвиг/позиция круга внутри правой колонки */
+.stamp__circular2 {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .stamp__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stamp__left {
+        order: 1;margin: auto;
+    }
+
+    .stamp__right {
+        order: 2;
+    }
+
+    .stamp {
+        padding-block: 40px;
+    }
+
+    .stamp__circular2 {
+        left: 10%;
+        top: 10%;
+    }
+}

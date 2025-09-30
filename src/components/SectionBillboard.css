@@ -1,0 +1,19 @@
+:root {
+    --wall: #e6cfb7; /* подложка, если нет текстуры */
+    --poster-bg: #161616; /* цвет постера за фото/текстом */
+    --poster-accent: #f4d6b3; /* «песочный» просвет за фото, как на рефе */
+    --text: #ffffff;
+    --muted: #cfcfcf;
+    --frame: #c9c9c9; /* металл рамки */
+    --container: min(1320px, 92vw);
+}
+
+.billboard {
+    min-height: 100svh;
+    background: var(--wall) center/cover no-repeat;
+    display: grid;
+    place-items: center;
+    padding: clamp(12px, 3vw, 28px);
+    background-size: cover;
+    background-position: center;
+}
