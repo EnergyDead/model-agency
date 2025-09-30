@@ -7,7 +7,7 @@ export default function SectionAbout() {
                 <h2 className="about__title">Where opportunity finds you</h2>
 
                 <div className="about__block">
-                    <strong>The ultimate boost</strong>
+                    <p>The ultimate boost</p>
                     <p>
                         We automate traffic and networking so opportunities find you — 24/7, without middlemen or
                         awkward
@@ -16,7 +16,7 @@ export default function SectionAbout() {
                 </div>
 
                 <div className="about__block">
-                    <strong>A new word in production</strong>
+                    <p>A new word in production</p>
                     <p>
                         This is not the old-school agency model. It’s a producer model for the digital era. Our system
                         constantly thinks about you:
@@ -27,7 +27,7 @@ export default function SectionAbout() {
                 </div>
 
                 <div className="about__block">
-                    <strong>Safety by default</strong>
+                    <p>Safety by default</p>
                     <p>
                         Every model in our ecosystem has a legal insurance plan with 24/7 emergency legal support. All
                         contracts, deal terms, and negotiations are secured inside our framework.
@@ -35,7 +35,7 @@ export default function SectionAbout() {
                 </div>
 
                 <div className="about__block">
-                    <strong>Your only task?</strong>
+                    <p>Your only task?</p>
                     <p>
                         Focus on art. Create content. Travel. Grow. We handle the rest — contracts, safety, networking,
                         and spotlight.
@@ -43,7 +43,7 @@ export default function SectionAbout() {
                 </div>
 
                 <div className="about__block">
-                    <strong>Not the “Diddy business.”</strong>
+                    <p>Not the “Diddy business.”</p>
                     <p>
                         We are not here for shady deals or exploitation. We are here for safety, creativity, and
                         personal growth.
