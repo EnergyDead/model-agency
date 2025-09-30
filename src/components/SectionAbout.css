@@ -1,48 +1,56 @@
-:root{
+:root {
     --page-bg: #171717;
     --text: #eaeaea;
     --muted: #bdbdbd;
     --container: 1120px;
+    --gap: clamp(24px, 4vw, 48px);
 }
 
-/* всегда экранная высота, с кросс-браузерным fallback’ом */
-.about{
+.about {
     background: var(--page-bg);
     color: var(--text);
 
-    /* порядок важен: сначала старые, затем новые */
-    min-height: 100vh;   /* fallback */
-    min-height: 100dvh;  /* chrome/desktop */
-    min-height: 100svh;  /* mobile-safe */
+    min-height: var(--hero-min-h);
 
     display: grid;
     place-items: center;
-
-    /* чтобы margin дочерних не схлопывался и не «съедал» высоту */
-    padding-block: 1px;       /* защитный хак */
+    padding-block: 1px;
 }
 
-/* внутренность тянем на всю высоту для центрирования */
-.about__inner{
+.about__inner {
     max-width: var(--container);
     width: 100%;
-    min-height: calc(100% - 2px);  /* компенсируем защитные 1px сверху/снизу */
+    min-height: calc(100% - 2px);
     margin: 0 auto;
     padding: 0 24px;
 
     display: grid;
-    align-content: center;   /* вертикальное центрирование текста */
+    align-content: center;
+    gap: var(--gap); /* промежутки между блоками */
 }
 
-.about__title{
-    margin: 0 0 24px;        /* только нижний margin */
-    font: 700 clamp(18px, 2.4vw, 24px)/1.3 "Inter", system-ui, sans-serif;
+.about__title {
+    margin: 0;
+    font: 700 clamp(20px, 2.4vw, 28px)/1.3 "Inter", system-ui, sans-serif;
     letter-spacing: .12em;
     text-transform: uppercase;
+    text-align: center;
 }
 
-.about__text{
+.about__block {
     max-width: 720px;
+    margin: 0 auto;
+}
+
+.about__block strong {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.about__block p {
+    margin: 0;
     color: var(--muted);
     font: 400 clamp(14px, 1.25vw, 16px)/1.75 "Inter", system-ui, sans-serif;
 }

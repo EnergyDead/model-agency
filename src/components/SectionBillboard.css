@@ -9,11 +9,11 @@
 }
 
 .billboard {
-    min-height: 100svh;
-    background: var(--wall) center/cover no-repeat;
     display: grid;
     place-items: center;
-    padding: clamp(12px, 3vw, 28px);
-    background-size: cover;
-    background-position: center;
+}
+.billboard__img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }

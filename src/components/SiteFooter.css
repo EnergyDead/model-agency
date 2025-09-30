@@ -6,17 +6,21 @@
 }
 
 .footer {
-    background: var(--footer-bg); /* не на весь экран — просто блок */
+    min-height: 300px;
+    background: var(--footer-bg);
     color: var(--text);
     border-top: 1px solid rgba(255, 255, 255, .06);
+    flex: 0 0 auto;
 }
 
 .footer__inner {
     max-width: var(--container);
     margin: 0 auto;
     text-align: center;
-    padding: clamp(28px, 6vw, 56px) 16px; /* компактный вертикальный паддинг */
+    padding: clamp(28px, 6vw, 56px) 16px;
+    padding-bottom: calc(clamp(28px, 6vw, 56px) + env(safe-area-inset-bottom));
 }
+
 
 .footer__heading {
     font: 700 clamp(12px, 1.4vw, 14px)/1 "Inter", system-ui, sans-serif;
