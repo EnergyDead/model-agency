@@ -8,7 +8,7 @@ export default function SectionStamp() {
             <div className="stamp__grid">
                 <div className="stamp__left">
                     <div className="stamp__copy">
-                        <LogoLockup title="ProBonoAI" subtitle="LEGAL PLATFORM" />
+                        <LogoLockup title="sérendipité." subtitle="FASHION NETWORK" />
                     </div>
 
                 </div>
