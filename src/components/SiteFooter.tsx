@@ -6,13 +6,13 @@ export default function SiteFooter() {
             <div className="footer__inner">
                 <ul className="footer__list">
                     <li><span className="footer__label">Instagram:</span> <a
-                        href="https://www.instagram.com/serendipite.art"
+                        href="https://www.instagram.com/temp"
                         target="_blank"
-                        rel="noreferrer">@serendipite.art</a></li>
+                        rel="noreferrer">@temp</a></li>
                     <li><span className="footer__label">Telegram:</span> <a
                         href="https://t.me/srndpte"
                         target="_blank"
-                        rel="noreferrer">@srndpte</a></li>
+                        rel="noreferrer">@temp</a></li>
                     <div className="footer__name">sérendipité.</div>
                 </ul>
             </div>

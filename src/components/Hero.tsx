@@ -7,7 +7,7 @@ export default function Hero() {
         <section className="hero" style={{backgroundImage: `url(${hero})`}}>
             <div className="hero__overlay"/>
             <div className="hero__inner">
-                <LogoLockup title="sérendipité." subtitle="MODEL AGENCY"/>
+                <LogoLockup title="sérendipité." subtitle="Beauty clinic by Feruza Ashurova"/>
             </div>
         </section>
     );

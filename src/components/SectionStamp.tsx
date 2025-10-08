@@ -8,7 +8,7 @@ export default function SectionStamp() {
             <div className="stamp__grid">
                 <div className="stamp__left">
                     <div className="stamp__copy">
-                        <LogoLockup title="sérendipité." subtitle="FASHION NETWORK" />
+                        <LogoLockup title="sérendipité." subtitle="Beauty clinic " />
                     </div>
 
                 </div>
@@ -17,7 +17,7 @@ export default function SectionStamp() {
                     <div className="stamp__ring">
                         <div className="stamp__circular2">
                             <CircularText
-                                text="TECH*NETWORK*MONEY*"
+                                text="PURE*CARE*BY FERUZA*"
                                 onHover="speedUp"
                                 spinDuration={40}
                                 className="stamp__circular"
