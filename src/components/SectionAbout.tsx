@@ -1,5 +1,5 @@
 import "./SectionAbout.css";
-import feruza from "../assets/feruza.jpg"; // замените на актуальное фото
+import feruza from "../assets/feruza.png"; // замените на актуальное фото
 
 export default function SectionAbout() {
     return (
