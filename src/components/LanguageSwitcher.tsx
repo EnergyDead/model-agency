@@ -7,8 +7,8 @@ type LanguageOption = {
 };
 
 const LANGUAGES: LanguageOption[] = [
-    { code: "ru", label: "RU" },
     { code: "en", label: "EN" },
+    { code: "ru", label: "RU" },
 ];
 
 export default function LanguageSwitcher() {

@@ -5,7 +5,6 @@ import SectionStamp from "./components/SectionStamp";
 import SectionBillboard from "./components/SectionBillboard";
 import SiteFooter from "./components/SiteFooter";
 import WorksPage from "./components/WorksPage";
-import LanguageSwitcher from "./components/LanguageSwitcher";
 import "./index.css";
 
 export default function App() {
@@ -29,15 +28,14 @@ export default function App() {
     if (path === "/works") {
         return (
             <>
-                <LanguageSwitcher />
                 <WorksPage onNavigate={navigate} />
+                <SiteFooter onViewWorks={() => navigate("/works")} />
             </>
         );
     }
 
     return (
         <>
-            <LanguageSwitcher />
             <Hero onViewWorks={() => navigate("/works")} />
             <SectionAbout />
             <SectionStamp />

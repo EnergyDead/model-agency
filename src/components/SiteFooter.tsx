@@ -1,4 +1,5 @@
 import { useTranslation } from "../lib/i18n";
+import LanguageSwitcher from "./LanguageSwitcher";
 import "./SiteFooter.css";
 
 type SiteFooterProps = {
@@ -35,6 +36,12 @@ export default function SiteFooter({ onViewWorks }: SiteFooterProps) {
                     <button type="button" className="footer__button" onClick={onViewWorks}>
                         {t("footer.cta")}
                     </button>
+                </div>
+                <div className="footer__language" aria-labelledby="footer-language-label">
+                    <span id="footer-language-label" className="footer__language-label">
+                        {t("footer.language")}
+                    </span>
+                    <LanguageSwitcher />
                 </div>
             </div>
         </footer>
