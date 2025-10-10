@@ -6,7 +6,82 @@
 }
 
 .billboard__inner {
-    max-width: 1200px;
+    max-width: 1200px;.billboard {
+    background: #0c0c0c;
+    padding: clamp(60px, 8vw, 120px) var(--gutter, 24px);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    .billboard__inner {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    /* 🖥️ Десктоп — авто-скролл “бесконечная” лента */
+    @media (min-width: 769px) {
+        .billboard__track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(260px, 1fr);
+            gap: clamp(16px, 2vw, 32px);
+            animation: billboard-marquee 22s linear infinite;
+            will-change: transform;
+        }
+
+        .billboard__track:hover {
+            animation-play-state: paused; /* пауза при ховере */
+        }
+    }
+
+    .billboard__img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border-radius: 10px;
+        filter: brightness(0.95);
+        transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .billboard__img:hover {
+        transform: translateY(-2px);
+        filter: brightness(1);
+    }
+
+    /* 📱 Мобильная карусель — свайп/скролл */
+    @media (max-width: 768px) {
+        .billboard__track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 12px;
+            padding-bottom: 8px;
+        }
+
+        .billboard__img {
+            flex: 0 0 85%;
+            border-radius: 8px;
+            scroll-snap-align: start;
+            aspect-ratio: 3 / 4;
+        }
+
+        .billboard__track::-webkit-scrollbar { display: none; }
+    }
+
+    /* ещё компактнее */
+    @media (max-width: 480px) {
+        .billboard__img { flex: 0 0 90%; }
+    }
+
+    /* keyframes для авто-скролла */
+    @keyframes billboard-marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - clamp(16px, 2vw, 32px))); }
+    }
+
     width: 100%;
 }
 
