@@ -17,7 +17,7 @@
 .hero__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, .15);
+    background: linear-gradient(180deg, rgba(8, 8, 9, 0.32) 0%, rgba(8, 8, 9, 0.8) 100%);
     z-index: 0;
 }
 
@@ -28,6 +28,12 @@
     display: grid;
     place-items: center;
     padding: 24px;
+}
+
+.hero__content {
+    display: grid;
+    gap: 32px;
+    justify-items: center;
 }
 
 .logo-lockup {
@@ -50,10 +56,52 @@
     justify-self: center;
     width: max-content;
     padding: 6px 12px;
-
     font-family: "Inter", "IBM Plex Sans", system-ui, sans-serif;
     font-size: clamp(12px, 1.6vw, 18px);
     letter-spacing: .22em;
     font-weight: 600;
     color: #fff;
+    text-transform: uppercase;
+}
+
+.hero__actions {
+    display: flex;
+    gap: 16px;
+}
+
+.hero__cta {
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(14, 14, 15, 0.2);
+    color: #fff;
+    font-family: "Inter", "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+    background: #fff;
+    color: #111;
+    border-color: #fff;
+    outline: none;
+}
+
+@media (max-width: 640px) {
+    .hero__content {
+        gap: 24px;
+    }
+
+    .hero__actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero__cta {
+        width: 100%;
+    }
 }
