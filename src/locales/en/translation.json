@@ -1,0 +1,81 @@
+{
+  "languageSwitcher": {
+    "label": "Select language"
+  },
+  "brand": {
+    "title": "sérendipité.",
+    "subtitle": "Beauty clinic by Feruza Ashurova",
+    "stampSubtitle": "Beauty clinic",
+    "circularText": "PURE*CARE*BY FERUZA*"
+  },
+  "hero": {
+    "cta": "View works"
+  },
+  "about": {
+    "photoAlt": "Dr. Ashurova Feruza",
+    "title": "Dr. Ashurova Feruza, MD",
+    "subtitle": "PURE & PRECISE.",
+    "description": "Dr. Ashurova Feruza is an aesthetic physician from Central Asia known for measured, natural results. Her approach combines medical diagnostics with careful technique to enhance features without overcorrection.",
+    "list": [
+      "• Board-certified physician with 10+ years in clinical and aesthetic medicine",
+      "• Personalized injection planning (botulinum toxin, HA fillers, collagen stimulators)",
+      "• Skin quality protocols: biorevitalization, PRP/PRF, medical peels",
+      "• Focus on facial balance, safety, and transparent aftercare"
+    ],
+    "button": "Book a Consultation",
+    "note": "By appointment only — New York & Tashkent",
+    "microcopy": "Each consultation begins with diagnostics, not trends. Every plan — personal, safe, and precise."
+  },
+  "footer": {
+    "heading": "Contacts",
+    "name": "sérendipité.",
+    "instagram": "Instagram:",
+    "telegram": "Telegram:",
+    "cta": "View portfolio"
+  },
+  "works": {
+    "back": "← Back to home",
+    "eyebrow": "Portfolio",
+    "title": "Real results of sérendipité",
+    "lead": "Each case is a personalised correction plan that preserves natural features. We capture the starting point, select precise techniques, and monitor every stage.",
+    "first": {
+      "date": "09 October 2025",
+      "title": "Structural correction of the midface",
+      "description": "Subtle replenishment of cheekbone and nasolabial volume to improve support, refresh the gaze, and smooth facial lines without heaviness.",
+      "beforeAlt": "Patient before midface correction",
+      "afterAlt": "Patient after midface correction"
+    },
+    "second": {
+      "date": "09 October 2025",
+      "title": "Balancing the lower third and profile",
+      "description": "Working with lip contour and chin to strengthen the profile and define the oval. Cannula techniques and soft fillers provide a precise finish.",
+      "beforeAlt": "Patient before lower-face correction",
+      "afterAlt": "Patient after lower-face correction"
+    },
+    "badges": {
+      "before": "before",
+      "after": "after"
+    },
+    "process": {
+      "date": "Step-by-step approach",
+      "title": "How we work",
+      "description": "Every session begins with diagnostics and 3D facial assessment. Based on the collected data we craft a personalised protocol, discuss stages and expectations, and document aftercare."
+    },
+    "processAlt": "Procedure in the sérendipité clinic",
+    "videos": {
+      "preparation": {
+        "title": "Preparing for the procedure",
+        "description": "Diagnostics, plan discussion, and preparation of products."
+      },
+      "technique": {
+        "title": "Technique and control",
+        "description": "Implementing the plan with a focus on accuracy and safety."
+      }
+    }
+  },
+  "billboard": {
+    "alt1": "Dr. Ashurova — portrait",
+    "alt2": "Procedure detail",
+    "alt3": "Clinic interior"
+  }
+}
