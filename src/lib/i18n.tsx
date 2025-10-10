@@ -38,7 +38,7 @@ const resolvePath = (language: LanguageCode, key: string): unknown => {
 
 const getInitialLanguage = (): LanguageCode => {
     if (typeof window === "undefined") {
-        return "ru";
+        return fallbackLanguage;
     }
 
     const stored = window.localStorage.getItem("i18n-language") as LanguageCode | null;
@@ -46,7 +46,11 @@ const getInitialLanguage = (): LanguageCode => {
         return stored;
     }
 
-    return window.navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en";
+    if (window.navigator.language.toLowerCase().startsWith("ru")) {
+        return "ru";
+    }
+
+    return fallbackLanguage;
 };
 
 export function I18nProvider({ children }: { children: ReactNode }) {
