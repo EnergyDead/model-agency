@@ -9,7 +9,7 @@
     "circularText": "PURE*CARE*BY FERUZA*"
   },
   "hero": {
-    "cta": "View works"
+    "cta": "Portfolio"
   },
   "about": {
     "photoAlt": "Dr. Ashurova Feruza",
@@ -63,15 +63,9 @@
       "description": "Every session begins with diagnostics and 3D facial assessment. Based on the collected data we craft a personalised protocol, discuss stages and expectations, and document aftercare."
     },
     "processAlt": "Procedure in the sérendipité clinic",
-    "videos": {
-      "preparation": {
-        "title": "Preparing for the procedure",
-        "description": "Diagnostics, plan discussion, and preparation of products."
-      },
-      "technique": {
-        "title": "Technique and control",
-        "description": "Implementing the plan with a focus on accuracy and safety."
-      }
+    "final": {
+      "title": "Движение и живой результат",
+      "description": "Короткие видео показывают естественную динамику и блеск сразу после процедуры — без фильтров и обработки, только дневной свет."
     }
   },
   "billboard": {

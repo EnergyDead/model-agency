@@ -11,9 +11,9 @@ export default function SectionBillboard() {
         <section className="billboard">
             <div className="billboard__inner">
                 <div className="billboard__track">
-                    <img src={img1} alt={t("billboard.alt1") ?? ""} className="billboard__img" />
-                    <img src={img2} alt={t("billboard.alt2") ?? ""} className="billboard__img" />
                     <img src={img3} alt={t("billboard.alt3") ?? ""} className="billboard__img" />
+                    <img src={img2} alt={t("billboard.alt2") ?? ""} className="billboard__img" />
+                    <img src={img1} alt={t("billboard.alt1") ?? ""} className="billboard__img" />
                 </div>
             </div>
         </section>

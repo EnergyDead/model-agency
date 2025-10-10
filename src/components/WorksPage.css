@@ -231,3 +231,72 @@
         min-height: 100vh;
     }
 }
+.works__section--final {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.works__video-file {
+    width: min(90%, 720px);
+    border-radius: 12px;
+    margin: 1.5rem auto;
+    display: block;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.works__section--final {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.works__videos--local {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.works__video-file {
+    width: min(90%, 700px);
+    max-height: 80vh; /* 🔹 не выше экрана */
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+}
+.works__section--final {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.works__videos--local {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.works__video-file {
+    width: 100%;
+    max-width: 700px;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+}
+
+/* 💻 На десктопе — в ряд */
+@media (min-width: 900px) {
+    .works__videos--local {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2.5rem;
+    }
+
+    .works__video-file {
+        max-width: 45%;
+        max-height: 75vh;
+    }
+}
