@@ -18,17 +18,17 @@ export default function SiteFooter({ onViewWorks }: SiteFooterProps) {
                     <li>
                         <span className="footer__label">{t("footer.instagram")}</span>{" "}
                         <a
-                            href="https://www.instagram.com/temp"
+                            href="https://www.instagram.com/bella_cosa_kosmetolog"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            @temp
+                            @bella_cosa_kosmetolog
                         </a>
                     </li>
                     <li>
-                        <span className="footer__label">{t("footer.telegram")}</span>{" "}
-                        <a href="https://t.me/srndpte" target="_blank" rel="noreferrer">
-                            @temp
+                        <span className="footer__label">{t("footer.phone")}</span>{" "}
+                        <a href="tel:+998946308808" className="footer__link">
+                            +998 94 630 8808
                         </a>
                     </li>
                 </ul>
