@@ -26,7 +26,6 @@ export default function SiteFooter({ onViewWorks }: SiteFooterProps) {
                         </a>
                     </li>
                     <li>
-                        <span className="footer__label">{t("footer.phone")}</span>{" "}
                         <a href="tel:+998946308808" className="footer__link">
                             +998 94 630 8808
                         </a>
