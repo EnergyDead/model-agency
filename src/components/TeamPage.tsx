@@ -4,7 +4,7 @@ import "./TeamPage.css";
 import feruzaPortrait from "../assets/feruza.jpg";
 import operationsPortrait from "../assets/team2.png";
 import artistryPortrait from "../assets/team3.png";
-import skincarePortrait from "../assets/team4.jpg";
+import skincarePortrait from "../assets/team4.png";
 
 type TeamPageProps = {
     onNavigate: (path: string) => void;
