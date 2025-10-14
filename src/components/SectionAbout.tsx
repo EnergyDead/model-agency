@@ -1,8 +1,12 @@
 import { useTranslation } from "../lib/i18n";
 import "./SectionAbout.css";
-import feruza from "../assets/feruza.png"; // замените на актуальное фото
+import clinicInterior from "../assets/billboard-3.jpg";
 
-export default function SectionAbout() {
+type SectionAboutProps = {
+    onViewTeam: () => void;
+};
+
+export default function SectionAbout({ onViewTeam }: SectionAboutProps) {
     const { t } = useTranslation();
     const listItems = t("about.list", { returnObjects: true }) as string[];
 
@@ -10,7 +14,7 @@ export default function SectionAbout() {
         <section className="about about--dark">
             <div className="about__inner">
                 <div className="about__photo">
-                    <img src={feruza} alt={t("about.photoAlt") ?? ""} />
+                    <img src={clinicInterior} alt={t("about.photoAlt") ?? ""} />
                 </div>
 
                 <div className="about__content">
@@ -27,9 +31,9 @@ export default function SectionAbout() {
                     </div>
 
                     <div className="about__cta">
-                        <a href="#booking" className="about__button">
+                        <button type="button" className="about__button" onClick={onViewTeam}>
                             {t("about.button")}
-                        </a>
+                        </button>
                         <p className="about__note">{t("about.note")}</p>
                         <p className="about__micro">{t("about.microcopy")}</p>
                     </div>

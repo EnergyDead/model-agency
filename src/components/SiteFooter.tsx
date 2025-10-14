@@ -4,9 +4,10 @@ import "./SiteFooter.css";
 
 type SiteFooterProps = {
     onViewWorks: () => void;
+    onViewTeam: () => void;
 };
 
-export default function SiteFooter({ onViewWorks }: SiteFooterProps) {
+export default function SiteFooter({ onViewWorks, onViewTeam }: SiteFooterProps) {
     const { t } = useTranslation();
 
     return (
@@ -34,6 +35,9 @@ export default function SiteFooter({ onViewWorks }: SiteFooterProps) {
                 <div className="footer__actions">
                     <button type="button" className="footer__button" onClick={onViewWorks}>
                         {t("footer.cta")}
+                    </button>
+                    <button type="button" className="footer__button" onClick={onViewTeam}>
+                        {t("footer.team")}
                     </button>
                 </div>
                 <div className="footer__language" aria-labelledby="footer-language-label">
