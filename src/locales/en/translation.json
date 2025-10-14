@@ -12,19 +12,19 @@
     "cta": "Portfolio"
   },
   "about": {
-    "photoAlt": "Dr. Ashurova Feruza",
-    "title": "Dr. Ashurova Feruza",
-    "subtitle": "PURE & PRECISE.",
-    "description": "Dr. Ashurova Feruza is an aesthetic physician from Central Asia known for measured, natural results. Her approach combines medical diagnostics with careful technique to enhance features without overcorrection.",
+    "photoAlt": "Interior of the sérendipité clinic",
+    "title": "sérendipité clinic",
+    "subtitle": "AESTHETICS WITH CARE.",
+    "description": "sérendipité is a boutique aesthetic medicine studio operating between New York and Tashkent. We combine diagnostics, precision injectables, and soft-care rituals to keep every face individual.",
     "list": [
-      "• Board-certified physician with 10+ years in clinical and aesthetic medicine",
-      "• Personalized injection planning (botulinum toxin, HA fillers, collagen stimulators)",
-      "• Skin quality protocols: biorevitalization, PRP/PRF, medical peels",
-      "• Focus on facial balance, safety, and transparent aftercare"
+      "• Bespoke journeys: assessment, treatment roadmap, and follow-up care",
+      "• International team of physicians and aestheticians practising across Central Asia and the US",
+      "• Treatment rooms with medical-grade hygiene and private recovery zones",
+      "• Programmes for Tashkent residents and guests: pop-up sessions, training, and quality oversight"
     ],
-    "button": "Book a Consultation",
-    "note": "By appointment only — New York & Tashkent",
-    "microcopy": "Each consultation begins with diagnostics, not trends. Every plan — personal, safe, and precise."
+    "button": "Meet the team",
+    "note": "We work by appointment only and support clients in two cities.",
+    "microcopy": "At the heart of the brand is respect for natural features, transparent protocols, and attentive aftercare."
   },
   "footer": {
     "heading": "Contacts",
@@ -32,7 +32,40 @@
     "instagram": "Instagram:",
     "telegram": "Telegram:",
     "cta": "View portfolio",
+    "team": "Meet the team",
     "language": "Language"
+  },
+  "team": {
+    "back": "← Back to home",
+    "eyebrow": "Team",
+    "title": "People of sérendipité",
+    "lead": "Our international physicians, managers, and Tashkent-based artisans guide every client from diagnostics to long-term follow-up.",
+    "members": {
+      "ceo": {
+        "name": "Dr. Feruza Ashurova",
+        "role": "CEO & Lead Aesthetic Physician",
+        "bio": "Founder of sérendipité with 12 years in injectables and device-based medicine. Oversees protocols and personally leads complex cases in New York and Tashkent.",
+        "photoAlt": "Portrait of Dr. Feruza Ashurova"
+      },
+      "operations": {
+        "name": "Nargiza Yuldasheva",
+        "role": "Operations Manager, Tashkent",
+        "bio": "Coordinates schedules, travel logistics, and hospitality for visiting clients. Leads pop-up sessions and aftercare support.",
+        "photoAlt": "Portrait of Nargiza Yuldasheva"
+      },
+      "artistry": {
+        "name": "Munisa Karimova",
+        "role": "Senior Injector",
+        "bio": "Board-certified dermatologist focused on soft contouring and biorevitalisation. Mentors the artistry team and quality standards.",
+        "photoAlt": "Portrait of Munisa Karimova"
+      },
+      "skincare": {
+        "name": "Sevara Rakhimova",
+        "role": "Skincare & Recovery Expert",
+        "bio": "Designs post-procedure care plans and trains Tashkent specialists on skin-health protocols.",
+        "photoAlt": "Sevara Rakhimova guiding a treatment"
+      }
+    }
   },
   "works": {
     "back": "← Back to home",

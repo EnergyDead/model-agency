@@ -5,6 +5,7 @@ import SectionStamp from "./components/SectionStamp";
 import SectionBillboard from "./components/SectionBillboard";
 import SiteFooter from "./components/SiteFooter";
 import WorksPage from "./components/WorksPage";
+import TeamPage from "./components/TeamPage";
 import "./index.css";
 
 export default function App() {
@@ -29,7 +30,22 @@ export default function App() {
         return (
             <>
                 <WorksPage onNavigate={navigate} />
-                <SiteFooter onViewWorks={() => navigate("/works")} />
+                <SiteFooter
+                    onViewWorks={() => navigate("/works")}
+                    onViewTeam={() => navigate("/teams")}
+                />
+            </>
+        );
+    }
+
+    if (path === "/teams") {
+        return (
+            <>
+                <TeamPage onNavigate={navigate} />
+                <SiteFooter
+                    onViewWorks={() => navigate("/works")}
+                    onViewTeam={() => navigate("/teams")}
+                />
             </>
         );
     }
@@ -37,10 +53,13 @@ export default function App() {
     return (
         <>
             <Hero onViewWorks={() => navigate("/works")} />
-            <SectionAbout />
+            <SectionAbout onViewTeam={() => navigate("/teams")} />
             <SectionStamp />
             <SectionBillboard />
-            <SiteFooter onViewWorks={() => navigate("/works")} />
+            <SiteFooter
+                onViewWorks={() => navigate("/works")}
+                onViewTeam={() => navigate("/teams")}
+            />
         </>
     );
 }

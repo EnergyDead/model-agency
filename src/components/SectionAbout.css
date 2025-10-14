@@ -98,15 +98,21 @@
     color: #ffffff;
     border-radius: 999px;
     font-weight: 500;
-    text-decoration: none;
     transition: all 0.25s ease;
     font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-family: "Inter", system-ui, sans-serif;
 }
 
-.about__button:hover {
+.about__button:hover,
+.about__button:focus-visible {
     background: #e5e5e5;
     color: #000;
     transform: translateY(-1px);
+    outline: none;
 }
 
 .about__note {
