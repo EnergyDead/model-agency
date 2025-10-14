@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import { useEffect } from "react";
 import { useTranslation } from "../lib/i18n";
+import { useRevealAnimation } from "../lib/useRevealAnimation";
 import "./WorksPage.css";
 import workSet1Before from "../assets/work-2025-10-09-set1-before.jpg";
 import workSet1After from "../assets/work-2025-10-09-set1-after.jpg";
@@ -13,14 +15,19 @@ type WorksPageProps = {
 };
 export default function WorksPage({ onNavigate }: WorksPageProps) {
     const { t } = useTranslation();
+    const { ref: pageRef, isVisible: pageVisible } = useRevealAnimation({ threshold: 0.1 });
+    const { ref: headerRef, isVisible: headerVisible } = useRevealAnimation({ threshold: 0.2 });
+    const { ref: firstSectionRef, isVisible: firstSectionVisible } = useRevealAnimation({ threshold: 0.2 });
+    const { ref: secondSectionRef, isVisible: secondSectionVisible } = useRevealAnimation({ threshold: 0.2 });
+    const { ref: finalSectionRef, isVisible: finalSectionVisible } = useRevealAnimation({ threshold: 0.2 });
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "auto" });
     }, []);
 
     return (
-        <main className="works">
-            <header className="works__header">
+        <main ref={pageRef} className={clsx("works", "reveal", pageVisible && "is-visible")}>
+            <header ref={headerRef} className={clsx("works__header", "reveal", headerVisible && "is-visible")}>
                 <button type="button" className="works__back" onClick={() => onNavigate("/")}>
                     {t("works.back")}
                 </button>
@@ -31,7 +38,11 @@ export default function WorksPage({ onNavigate }: WorksPageProps) {
                 </div>
             </header>
 
-            <section className="works__section" aria-labelledby="set1-title">
+            <section
+                ref={firstSectionRef}
+                className={clsx("works__section", "reveal", firstSectionVisible && "is-visible")}
+                aria-labelledby="set1-title"
+            >
                 <div className="works__intro">
                     <h2 id="set1-title" className="works__section-title">{t("works.first.title")}</h2>
                     <p className="works__description">{t("works.first.description")}</p>
@@ -48,7 +59,11 @@ export default function WorksPage({ onNavigate }: WorksPageProps) {
                 </div>
             </section>
 
-            <section className="works__section" aria-labelledby="set2-title">
+            <section
+                ref={secondSectionRef}
+                className={clsx("works__section", "reveal", secondSectionVisible && "is-visible")}
+                aria-labelledby="set2-title"
+            >
                 <div className="works__intro">
                     <h2 id="set2-title" className="works__section-title">{t("works.second.title")}</h2>
                     <p className="works__description">{t("works.second.description")}</p>
@@ -64,7 +79,15 @@ export default function WorksPage({ onNavigate }: WorksPageProps) {
                     </figure>
                 </div>
             </section>
-            <section className="works__section works__section--final">
+            <section
+                ref={finalSectionRef}
+                className={clsx(
+                    "works__section",
+                    "works__section--final",
+                    "reveal",
+                    finalSectionVisible && "is-visible",
+                )}
+            >
                 <div className="works__intro">
                     <h2 className="works__section-title">{t("works.final.title")}</h2>
                     <p className="works__description">{t("works.final.description")}</p>

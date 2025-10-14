@@ -130,6 +130,34 @@
     max-width: 90%;
 }
 
+.about__inner.reveal .about__photo,
+.about__inner.reveal .about__content {
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about__inner.reveal .about__photo {
+    transform: translate3d(-48px, 0, 0);
+}
+
+.about__inner.reveal .about__content {
+    transform: translate3d(0, 48px, 0);
+}
+
+.about__inner.reveal.is-visible .about__photo,
+.about__inner.reveal.is-visible .about__content {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.about__inner.reveal.is-visible .about__photo {
+    transition-delay: 0.1s;
+}
+
+.about__inner.reveal.is-visible .about__content {
+    transition-delay: 0.22s;
+}
+
 /* 📱 Мобильная версия */
 @media (max-width: 768px) {
     .about__inner {

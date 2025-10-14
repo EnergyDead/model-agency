@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import { useTranslation } from "../lib/i18n";
+import { useRevealAnimation } from "../lib/useRevealAnimation";
 import "./SectionAbout.css";
 import clinicInterior from "../assets/billboard-3.jpg";
 
@@ -9,10 +11,11 @@ type SectionAboutProps = {
 export default function SectionAbout({ onViewTeam }: SectionAboutProps) {
     const { t } = useTranslation();
     const listItems = t("about.list", { returnObjects: true }) as string[];
+    const { ref, isVisible } = useRevealAnimation({ threshold: 0.25 });
 
     return (
         <section className="about about--dark">
-            <div className="about__inner">
+            <div ref={ref} className={clsx("about__inner", "reveal", isVisible && "is-visible")}>
                 <div className="about__photo">
                     <img src={clinicInterior} alt={t("about.photoAlt") ?? ""} />
                 </div>

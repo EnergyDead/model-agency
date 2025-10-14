@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import { useTranslation } from "../lib/i18n";
+import { useRevealAnimation } from "../lib/useRevealAnimation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import "./SiteFooter.css";
 
@@ -9,10 +11,11 @@ type SiteFooterProps = {
 
 export default function SiteFooter({ onViewWorks, onViewTeam }: SiteFooterProps) {
     const { t } = useTranslation();
+    const { ref, isVisible } = useRevealAnimation({ threshold: 0.1 });
 
     return (
         <footer className="footer" role="contentinfo">
-            <div className="footer__inner">
+            <div ref={ref} className={clsx("footer__inner", "reveal", isVisible && "is-visible")}>
                 <div className="footer__heading">{t("footer.heading")}</div>
                 <div className="footer__name">{t("footer.name")}</div>
                 <ul className="footer__list">

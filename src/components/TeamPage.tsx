@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import { useEffect } from "react";
 import { useTranslation } from "../lib/i18n";
+import { useRevealAnimation } from "../lib/useRevealAnimation";
 import "./TeamPage.css";
 import feruzaPortrait from "../assets/feruza.jpg";
 import operationsPortrait from "../assets/team2.png";
@@ -34,14 +36,17 @@ const memberConfig: MemberConfig[] = [
 export default function TeamPage({ onNavigate }: TeamPageProps) {
     const { t } = useTranslation();
     const copies = t("team.members", { returnObjects: true }) as Record<MemberKey, MemberCopy>;
+    const { ref: pageRef, isVisible: pageVisible } = useRevealAnimation({ threshold: 0.1 });
+    const { ref: headerRef, isVisible: headerVisible } = useRevealAnimation({ threshold: 0.2 });
+    const { ref: membersRef, isVisible: membersVisible } = useRevealAnimation({ threshold: 0.2 });
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "auto" });
     }, []);
 
     return (
-        <main className="team">
-            <header className="team__header">
+        <main ref={pageRef} className={clsx("team", "reveal", pageVisible && "is-visible")}>
+            <header ref={headerRef} className={clsx("team__header", "reveal", headerVisible && "is-visible")}>
                 <button type="button" className="team__back" onClick={() => onNavigate("/")}>
                     {t("team.back")}
                 </button>
@@ -52,7 +57,11 @@ export default function TeamPage({ onNavigate }: TeamPageProps) {
                 </div>
             </header>
 
-            <section className="team__members" aria-label={t("team.title") ?? ""}>
+            <section
+                ref={membersRef}
+                className={clsx("team__members", "reveal", membersVisible && "is-visible")}
+                aria-label={t("team.title") ?? ""}
+            >
                 {memberConfig.map(({ key, image }) => {
                     const copy = copies[key] ?? { name: key, role: "", bio: "", photoAlt: "" };
 

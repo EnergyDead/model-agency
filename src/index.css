@@ -99,6 +99,59 @@ button {
     --sidebar-ring: oklch(0.708 0 0);
 }
 
+.reveal {
+    --reveal-translate-x: 0px;
+    --reveal-translate-y: 40px;
+    --reveal-scale: 1;
+    --reveal-opacity: 0;
+    --reveal-delay: 0s;
+    opacity: var(--reveal-opacity);
+    transform: translate3d(var(--reveal-translate-x), var(--reveal-translate-y), 0)
+        scale3d(var(--reveal-scale), var(--reveal-scale), 1);
+    transition-property: opacity, transform;
+    transition-duration: 0.9s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    --reveal-opacity: 1;
+    --reveal-translate-x: 0px;
+    --reveal-translate-y: 0px;
+    --reveal-scale: 1;
+}
+
+.reveal--left {
+    --reveal-translate-x: -56px;
+    --reveal-translate-y: 0px;
+}
+
+.reveal--right {
+    --reveal-translate-x: 56px;
+    --reveal-translate-y: 0px;
+}
+
+.reveal--up {
+    --reveal-translate-y: 40px;
+}
+
+.reveal--fade {
+    --reveal-translate-y: 0px;
+}
+
+.reveal--zoom {
+    --reveal-scale: 0.94;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);

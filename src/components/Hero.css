@@ -110,6 +110,31 @@
     outline: none;
 }
 
+.hero__inner.reveal .logo-lockup,
+.hero__inner.reveal .hero__actions {
+    opacity: 0;
+    transform: translate3d(0, 42px, 0);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__inner.reveal .hero__actions {
+    transform: translate3d(0, 56px, 0);
+}
+
+.hero__inner.reveal.is-visible .logo-lockup,
+.hero__inner.reveal.is-visible .hero__actions {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.hero__inner.reveal.is-visible .logo-lockup {
+    transition-delay: 0.12s;
+}
+
+.hero__inner.reveal.is-visible .hero__actions {
+    transition-delay: 0.24s;
+}
+
 @media (max-width: 640px) {
     .hero__content {
         gap: 24px;
