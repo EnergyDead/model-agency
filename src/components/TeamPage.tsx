@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useTranslation } from "../lib/i18n";
 import "./TeamPage.css";
 import feruzaPortrait from "../assets/feruza.jpg";
-import operationsPortrait from "../assets/girl-one.png";
-import artistryPortrait from "../assets/girl-two.png";
-import skincarePortrait from "../assets/billboard-2.jpg";
+import operationsPortrait from "../assets/team2.png";
+import artistryPortrait from "../assets/team3.png";
+import skincarePortrait from "../assets/team4.jpg";
 
 type TeamPageProps = {
     onNavigate: (path: string) => void;
