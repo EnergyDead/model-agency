@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Hero from "./components/Hero";
 import SectionAbout from "./components/SectionAbout";
 import SectionStamp from "./components/SectionStamp";
@@ -26,40 +27,57 @@ export default function App() {
         setPath(nextPath);
     }, []);
 
-    if (path === "/works") {
-        return (
-            <>
-                <WorksPage onNavigate={navigate} />
-                <SiteFooter
-                    onViewWorks={() => navigate("/works")}
-                    onViewTeam={() => navigate("/teams")}
-                />
-            </>
-        );
-    }
+    const content = useMemo(() => {
+        if (path === "/works") {
+            return (
+                <>
+                    <WorksPage onNavigate={navigate} />
+                    <SiteFooter
+                        onViewWorks={() => navigate("/works")}
+                        onViewTeam={() => navigate("/teams")}
+                    />
+                </>
+            );
+        }
 
-    if (path === "/teams") {
+        if (path === "/teams") {
+            return (
+                <>
+                    <TeamPage onNavigate={navigate} />
+                    <SiteFooter
+                        onViewWorks={() => navigate("/works")}
+                        onViewTeam={() => navigate("/teams")}
+                    />
+                </>
+            );
+        }
+
         return (
             <>
-                <TeamPage onNavigate={navigate} />
+                <Hero onViewWorks={() => navigate("/works")} />
+                <SectionAbout onViewTeam={() => navigate("/teams")} />
+                <SectionStamp />
+                <SectionBillboard />
                 <SiteFooter
                     onViewWorks={() => navigate("/works")}
                     onViewTeam={() => navigate("/teams")}
                 />
             </>
         );
-    }
+    }, [navigate, path]);
 
     return (
-        <>
-            <Hero onViewWorks={() => navigate("/works")} />
-            <SectionAbout onViewTeam={() => navigate("/teams")} />
-            <SectionStamp />
-            <SectionBillboard />
-            <SiteFooter
-                onViewWorks={() => navigate("/works")}
-                onViewTeam={() => navigate("/teams")}
-            />
-        </>
+        <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+                key={path}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -24 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{ display: "contents" }}
+            >
+                {content}
+            </motion.div>
+        </AnimatePresence>
     );
 }
