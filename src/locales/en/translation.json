@@ -27,13 +27,32 @@
     "microcopy": "At the heart of the brand is respect for natural features, transparent protocols, and attentive aftercare."
   },
   "footer": {
-    "heading": "Contacts",
+    "heading": "Client concierge",
     "name": "sérendipité.",
-    "instagram": "Instagram:",
-    "telegram": "Telegram:",
+    "tagline": "Boutique aesthetic medicine between New York and Tashkent.",
     "cta": "View portfolio",
     "team": "Meet the team",
-    "language": "Language"
+    "language": "Language",
+    "address": {
+      "title": "Location",
+      "line1": "Tashkent, Afrosiab street 12",
+      "line2": "Private floor, entry by appointment",
+      "map": "Open in Google Maps"
+    },
+    "contacts": {
+      "title": "Concierge",
+      "phoneLabel": "Call",
+      "emailLabel": "Email",
+      "socialLabel": "Instagram"
+    },
+    "hours": {
+      "title": "Schedule",
+      "slot1": "Mon–Sat: 10:00 – 21:00",
+      "slot2": "Sun: by private appointment",
+      "note": "Your personal assistant will confirm the visit.",
+      "timezone": "Tashkent (UTC+5)"
+    },
+    "bottom": "© {{year}} sérendipité clinic. All rights reserved."
   },
   "team": {
     "back": "← Back to home",
