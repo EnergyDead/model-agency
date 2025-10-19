@@ -142,6 +142,10 @@
 }
 
 @media (max-width: 640px) {
+    .hero {
+        background-position: 45% center;
+    }
+
     .hero__content {
         gap: 24px;
     }
