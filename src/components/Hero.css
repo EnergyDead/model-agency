@@ -47,7 +47,6 @@
 
 .hero__inner {
     position: relative;
-    z-index: 1;
     width: 100%;
     max-width: 700px; /* ограничиваем, чтобы текст не растягивался */
     padding: 0 20px; /* меньше боковых отступов */
@@ -61,6 +60,7 @@
 }
 
 .hero__content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,6 +68,16 @@
     gap: 32px;
     text-align: center;
     width: 100%;
+}
+
+.hero .logo-lockup__title {
+    position: relative;
+    z-index: 1;
+}
+
+.hero .logo-lockup__subtitle {
+    position: relative;
+    z-index: 3;
 }
 
 .logo-lockup {
@@ -100,6 +110,8 @@
 }
 
 .hero__actions {
+    position: relative;
+    z-index: 3;
     display: flex;
     flex-direction: column; /* на мобилке кнопка точно по центру */
     align-items: center;
