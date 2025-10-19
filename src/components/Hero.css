@@ -21,8 +21,8 @@
 
 .hero__hand {
     position: absolute;
-    bottom: 2%;
-    left: clamp(32px, 10vw, 140px);
+    bottom: 25%;
+    left: 20%;
     right: auto;
     width: min(360px, 40vw);
     max-width: 460px;
@@ -135,9 +135,9 @@
     }
 
     .hero__hand {
-        left: 8%;
+        left: -30%;
         right: auto;
-        bottom: -6%;
+        bottom: 35%;
         width: 68vw;
     }
 
