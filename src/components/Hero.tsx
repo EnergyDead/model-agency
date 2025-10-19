@@ -68,9 +68,9 @@ export default function Hero({ onViewWorks }: HeroProps) {
 
     const handTransform = useMemo(() => {
         const progress = Math.max(-1, Math.min(1, isHandEngaged ? 1 : scrollProgress));
-        const translateX = 36 + progress * 42;
-        const translateY = 18 - progress * 12;
-        const rotate = -8 + progress * 4;
+        const translateX = 10 + progress * 28;
+        const translateY = 12 - progress * 10;
+        const rotate = -10 + progress * 6;
 
         return `translate3d(${translateX}%, ${translateY}%, 0) rotate(${rotate}deg)`;
     }, [isHandEngaged, scrollProgress]);
