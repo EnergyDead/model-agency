@@ -9,7 +9,7 @@
     position: relative;
     min-height: var(--hero-min-h);
     background-size: cover;
-    background-position: center center; /* центрируем фон по обеим осям */
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -19,6 +19,7 @@
     overflow: hidden;
 }
 
+/* рука косметолога */
 .hero__hand {
     position: absolute;
     bottom: 25%;
@@ -34,8 +35,15 @@
     z-index: 2;
 }
 
+/* при клике — укол */
 .hero__hand--engaged {
     transition-duration: 0.35s;
+}
+
+/* при уходе блока hero — ускоряем движение */
+.hero__hand--fast {
+    transition-duration: 0.25s !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
 .hero__overlay {
@@ -48,8 +56,8 @@
 .hero__inner {
     position: relative;
     width: 100%;
-    max-width: 700px; /* ограничиваем, чтобы текст не растягивался */
-    padding: 0 20px; /* меньше боковых отступов */
+    max-width: 700px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,7 +121,7 @@
     position: relative;
     z-index: 3;
     display: flex;
-    flex-direction: column; /* на мобилке кнопка точно по центру */
+    flex-direction: column;
     align-items: center;
     gap: 16px;
     width: 100%;
@@ -141,9 +149,10 @@
     outline: none;
 }
 
+/* mobile */
 @media (max-width: 640px) {
     .hero {
-        background-position: 45% center;
+        background-position: 45% center; /* чуть вправо */
     }
 
     .hero__content {
@@ -153,8 +162,13 @@
     .hero__hand {
         left: -30%;
         right: auto;
-        bottom: 35%;
+        bottom: 32%;
         width: 68vw;
+        transition-duration: 0.1s !important; /* быстрее реагирует на скролл */
+    }
+
+    .hero__hand--fast {
+        transition-duration: 0.12s !important;
     }
 
     .hero__cta {

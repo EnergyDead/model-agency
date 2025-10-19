@@ -14,14 +14,14 @@ export default function Hero({ onViewWorks }: HeroProps) {
     const sectionRef = useRef<HTMLElement | null>(null);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isHandEngaged, setHandEngaged] = useState(false);
+    const [isFast, setFast] = useState(false); // 👈 новое состояние для ускорения
     const clickTimeoutRef = useRef<number | null>(null);
     const resetTimeoutRef = useRef<number | null>(null);
 
+    // вычисляем положение секции и прогресс скролла
     useEffect(() => {
         const section = sectionRef.current;
-        if (!section) {
-            return;
-        }
+        if (!section) return;
 
         let frame = 0;
 
@@ -36,9 +36,7 @@ export default function Hero({ onViewWorks }: HeroProps) {
         };
 
         const handleScroll = () => {
-            if (frame) {
-                window.cancelAnimationFrame(frame);
-            }
+            if (frame) window.cancelAnimationFrame(frame);
             frame = window.requestAnimationFrame(updateProgress);
         };
 
@@ -47,50 +45,52 @@ export default function Hero({ onViewWorks }: HeroProps) {
         window.addEventListener("resize", handleScroll);
 
         return () => {
-            if (frame) {
-                window.cancelAnimationFrame(frame);
-            }
+            if (frame) window.cancelAnimationFrame(frame);
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleScroll);
         };
     }, []);
 
+    // ускоряем руку, если блок hero уходит вверх
+    useEffect(() => {
+        setFast(scrollProgress < -0.4);
+    }, [scrollProgress]);
+
+    // очищаем таймеры
     useEffect(() => {
         return () => {
-            if (clickTimeoutRef.current) {
-                window.clearTimeout(clickTimeoutRef.current);
-            }
-            if (resetTimeoutRef.current) {
-                window.clearTimeout(resetTimeoutRef.current);
-            }
+            if (clickTimeoutRef.current) window.clearTimeout(clickTimeoutRef.current);
+            if (resetTimeoutRef.current) window.clearTimeout(resetTimeoutRef.current);
         };
     }, []);
 
+    // вычисляем положение руки
     const handTransform = useMemo(() => {
         const progress = Math.max(-1, Math.min(1, isHandEngaged ? 1 : scrollProgress));
-        const translateX = 10 + progress * 28;
-        const translateY = 12 - progress * 10;
-        const rotate = -10 + progress * 6;
+
+        // если уходит вверх — слегка уменьшаем амплитуду
+        const damped = progress < -0.3 ? progress * 0.6 : progress;
+
+        const translateX = 10 + damped * 28;
+        const translateY = 12 - damped * 10;
+        const rotate = -10 + damped * 6;
 
         return `translate3d(${translateX}%, ${translateY}%, 0) rotate(${rotate}deg)`;
     }, [isHandEngaged, scrollProgress]);
 
+    // при клике — "укол"
     const handleCtaClick = () => {
         setHandEngaged(true);
 
-        if (resetTimeoutRef.current) {
-            window.clearTimeout(resetTimeoutRef.current);
-        }
+        if (resetTimeoutRef.current) window.clearTimeout(resetTimeoutRef.current);
         resetTimeoutRef.current = window.setTimeout(() => {
             setHandEngaged(false);
-        }, 600);
+        }, 400); // чуть быстрее возврат
 
-        if (clickTimeoutRef.current) {
-            window.clearTimeout(clickTimeoutRef.current);
-        }
+        if (clickTimeoutRef.current) window.clearTimeout(clickTimeoutRef.current);
         clickTimeoutRef.current = window.setTimeout(() => {
             onViewWorks();
-        }, 180);
+        }, 120); // быстрее переход
     };
 
     return (
@@ -110,7 +110,9 @@ export default function Hero({ onViewWorks }: HeroProps) {
                 src={hand}
                 alt=""
                 aria-hidden="true"
-                className={`hero__hand${isHandEngaged ? " hero__hand--engaged" : ""}`}
+                className={`hero__hand${
+                    isHandEngaged ? " hero__hand--engaged" : ""
+                }${isFast ? " hero__hand--fast" : ""}`} // 👈 теперь добавляется ускоренный класс
                 style={{ transform: handTransform }}
             />
         </section>
