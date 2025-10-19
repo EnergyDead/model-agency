@@ -21,10 +21,11 @@
 
 .hero__hand {
     position: absolute;
-    bottom: 0;
-    right: 10%;
-    width: min(380px, 46vw);
-    max-width: 480px;
+    bottom: 2%;
+    left: clamp(32px, 10vw, 140px);
+    right: auto;
+    width: min(360px, 40vw);
+    max-width: 460px;
     transform-origin: center;
     pointer-events: none;
     user-select: none;
@@ -134,8 +135,10 @@
     }
 
     .hero__hand {
-        right: -8%;
-        width: 70vw;
+        left: 8%;
+        right: auto;
+        bottom: -6%;
+        width: 68vw;
     }
 
     .hero__cta {
