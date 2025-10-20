@@ -6,9 +6,10 @@
 }
 
 .hero {
+    background-position: 50% 70% !important;
     position: relative;
     min-height: var(--hero-min-h);
-    background-size: cover;
+    background-size: cover !important;
     background-position: center center;
     background-repeat: no-repeat;
     display: flex;
@@ -149,22 +150,23 @@
     outline: none;
 }
 
-/* mobile */
 @media (max-width: 640px) {
     .hero {
-        background-position: 45% center; /* чуть вправо */
+        background-position: 42% 1% !important; /* десктоп — чуть выше */
+        background-size: cover !important;
     }
-
     .hero__content {
         gap: 24px;
     }
-
+    .hero__inner {
+        margin-top: 64px;
+    }
     .hero__hand {
         left: -30%;
         right: auto;
-        bottom: 32%;
+        bottom: 48%;
         width: 68vw;
-        transition-duration: 0.1s !important; /* быстрее реагирует на скролл */
+        transition-duration: 0.1s !important;
     }
 
     .hero__hand--fast {
@@ -176,3 +178,4 @@
         max-width: 320px;
     }
 }
+

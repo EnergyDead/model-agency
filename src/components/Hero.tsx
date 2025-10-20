@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "../lib/i18n";
 import "./Hero.css";
-import hero from "../assets/hero.png";
+import hero from "../assets/hero.jpg";
 import hand from "../assets/hand.png";
 import LogoLockup from "./LogoLockup";
 
