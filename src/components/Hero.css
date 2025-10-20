@@ -164,7 +164,7 @@
     .hero__hand {
         left: -30%;
         right: auto;
-        bottom: 48%;
+        bottom: 45%;
         width: 68vw;
         transition-duration: 0.1s !important;
     }
