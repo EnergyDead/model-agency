@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-type TelegramColorScheme = "light" | "dark";
+export type TelegramColorScheme = "light" | "dark";
 
-type TelegramThemeParams = {
+export type TelegramThemeParams = {
     bg_color?: string;
     text_color?: string;
     secondary_bg_color?: string;
@@ -12,7 +12,7 @@ type TelegramThemeParams = {
     button_text_color?: string;
 };
 
-type TelegramWebApp = {
+export type TelegramWebApp = {
     ready: () => void;
     colorScheme?: TelegramColorScheme;
     themeParams?: TelegramThemeParams;
@@ -22,6 +22,7 @@ type TelegramContextValue = {
     webApp?: TelegramWebApp;
     colorScheme: TelegramColorScheme;
     themeParams: TelegramThemeParams;
+    resolvedTheme: ResolvedTheme;
 };
 
 type ResolvedTheme = {
@@ -55,11 +56,7 @@ const defaultPalette: Record<TelegramColorScheme, ResolvedTheme> = {
     },
 };
 
-const TelegramContext = createContext<TelegramContextValue>({
-    webApp: undefined,
-    colorScheme: "light",
-    themeParams: {},
-});
+const TelegramContext = createContext<TelegramContextValue | undefined>(undefined);
 
 function getTelegramWebApp(): TelegramWebApp | undefined {
     if (typeof window === "undefined") {
@@ -86,16 +83,25 @@ function resolveTheme(
 }
 
 export function useTelegramTheme() {
-    return useContext(TelegramContext);
+    const context = useContext(TelegramContext);
+
+    if (!context) {
+        throw new Error("useTelegramTheme must be used within TelegramProvider");
+    }
+
+    return context;
 }
 
-export function TelegramProvider({ children }: { children: ReactNode }) {
-    const [webApp] = useState<TelegramWebApp | undefined>(() => getTelegramWebApp());
+export function TelegramProvider({ children, webApp: webAppProp }: { children: ReactNode; webApp?: TelegramWebApp }) {
+    const [webApp] = useState<TelegramWebApp | undefined>(() => webAppProp ?? getTelegramWebApp());
 
     const colorScheme: TelegramColorScheme = webApp?.colorScheme === "dark" ? "dark" : "light";
     const themeParams = webApp?.themeParams ?? {};
 
-    const resolvedTheme = useMemo(() => resolveTheme(colorScheme, themeParams), [colorScheme, themeParams]);
+    const resolvedTheme = useMemo(
+        () => resolveTheme(colorScheme, themeParams),
+        [colorScheme, themeParams],
+    );
 
     useEffect(() => {
         if (webApp?.ready) {
@@ -112,15 +118,17 @@ export function TelegramProvider({ children }: { children: ReactNode }) {
         root.style.setProperty("--app-border", resolvedTheme.border);
         root.style.setProperty("--app-muted", resolvedTheme.muted);
         root.style.setProperty("--app-accent", resolvedTheme.accent);
-    }, [resolvedTheme]);
+        root.dataset.theme = colorScheme;
+    }, [colorScheme, resolvedTheme]);
 
     const contextValue = useMemo(
         () => ({
             webApp,
             colorScheme,
             themeParams,
+            resolvedTheme,
         }),
-        [webApp, colorScheme, themeParams],
+        [webApp, colorScheme, themeParams, resolvedTheme],
     );
 
     return <TelegramContext.Provider value={contextValue}>{children}</TelegramContext.Provider>;

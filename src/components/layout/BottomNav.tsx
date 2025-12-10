@@ -16,7 +16,7 @@ export default function BottomNav() {
                     <li key={link.to}>
                         <NavLink
                             to={link.to}
-                            className={({ isActive }) =>
+                            className={({ isActive }: { isActive: boolean }) =>
                                 ["bottom-nav__link", isActive ? "bottom-nav__link--active" : null]
                                     .filter(Boolean)
                                     .join(" ")

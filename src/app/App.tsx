@@ -1,5 +1,6 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import "../index.css";
+import { useTelegramTheme } from "../telegram/TelegramProvider";
 import { routes } from "./routes";
 
 function AppRoutes() {
@@ -7,9 +8,13 @@ function AppRoutes() {
 }
 
 export default function App() {
+    const { resolvedTheme } = useTelegramTheme();
+
     return (
-        <BrowserRouter>
-            <AppRoutes />
-        </BrowserRouter>
+        <div style={{ background: resolvedTheme.background, color: resolvedTheme.text, minHeight: "100vh" }}>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </div>
     );
 }
