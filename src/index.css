@@ -747,3 +747,245 @@ h1 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+.history-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.history-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.history-title {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.history-subtitle {
+    margin: 0;
+    color: var(--app-muted);
+    font-size: 0.98rem;
+}
+
+.history-filters {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    align-items: end;
+}
+
+.history-filters__group {
+    display: grid;
+    gap: 8px;
+    align-items: start;
+}
+
+.history-filters__label {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--app-muted);
+}
+
+.history-filters__select {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--app-border);
+    background: #f8fafc;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.history-filters__select:focus {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.16);
+}
+
+.history-period {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.history-period__button {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--app-border);
+    background: #f8fafc;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.history-period__button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.12);
+    border-color: #94a3b8;
+}
+
+.history-period__button--active {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: #f8fafc;
+    border-color: transparent;
+    box-shadow: 0 12px 24px rgba(14, 165, 233, 0.2);
+}
+
+.history-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.history-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.history-card__title {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.history-card__hint {
+    color: var(--app-muted);
+    font-size: 0.95rem;
+}
+
+.history-timeline {
+    display: grid;
+    gap: 12px;
+    position: relative;
+}
+
+.history-item {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 12px;
+    position: relative;
+}
+
+.history-item::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: -12px;
+    width: 2px;
+    background: var(--app-border);
+}
+
+.history-item:last-child::before {
+    bottom: 0;
+}
+
+.history-item__indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    border: 3px solid #f8fafc;
+    background: #0f172a;
+    box-shadow: 0 0 0 2px var(--app-border);
+    margin-top: 4px;
+}
+
+.history-item__content {
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--app-border);
+    background: #f8fafc;
+    display: grid;
+    gap: 8px;
+}
+
+.history-item__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.history-item__type-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.history-item__type {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.history-item__type--blue {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.history-item__type--green {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.history-item__type--amber {
+    background: #fef9c3;
+    color: #92400e;
+}
+
+.history-item__type--red {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.history-item__datetime {
+    color: var(--app-muted);
+    font-weight: 600;
+}
+
+.history-item__amount {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.history-item__amount--positive {
+    color: #0f9f6e;
+}
+
+.history-item__amount--negative {
+    color: #e11d48;
+}
+
+.history-item__currency {
+    color: var(--app-muted);
+    font-size: 0.95rem;
+}
+
+.history-item__comment {
+    margin: 0;
+    color: var(--app-text);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+@media (min-width: 640px) {
+    .history-page {
+        gap: 18px;
+    }
+
+    .history-title {
+        font-size: 1.45rem;
+    }
+
+    .history-card__title {
+        font-size: 1.15rem;
+    }
+}
