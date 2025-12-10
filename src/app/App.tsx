@@ -1,11 +1,15 @@
+import { BrowserRouter, useRoutes } from "react-router-dom";
 import "../index.css";
-import MainLayout from "../components/layout/MainLayout";
-import DashboardPage from "../pages/DashboardPage";
+import { routes } from "./routes";
+
+function AppRoutes() {
+    return useRoutes(routes);
+}
 
 export default function App() {
     return (
-        <MainLayout>
-            <DashboardPage />
-        </MainLayout>
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
     );
 }
