@@ -1,4 +1,7 @@
 import { useMemo, useState } from "react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import SectionTitle from "../components/ui/SectionTitle";
 
 const quickAmounts = [50, 100, 200];
 
@@ -22,26 +25,40 @@ export default function DepositPage() {
     };
 
     return (
-        <div className="deposit-page">
-            <header className="deposit-header">
-                <h1 className="deposit-title">Пополнить баланс</h1>
-                <p className="deposit-subtitle">
-                    Укажите сумму пополнения и продолжите оплату через Telegram Wallet
-                </p>
-            </header>
+        <div className="page-shell">
+            <SectionTitle
+                eyebrow="Операции"
+                title="Пополнить баланс"
+                subtitle="Укажите сумму и продолжите оплату через Telegram Wallet"
+            />
 
-            <section className="card deposit-card deposit-balance-card" aria-label="Текущий баланс">
-                <div className="deposit-card__label">Текущий баланс</div>
-                <div className="deposit-card__value">
-                    <span className="deposit-card__amount">{currentBalance}</span>
-                    <span className="deposit-card__currency">USDT</span>
-                </div>
-            </section>
+            <div className="two-column-grid">
+                <Card as="section" className="metric-card" variant="highlight">
+                    <p className="metric-card__label">Текущий баланс</p>
+                    <div className="metric-card__value">
+                        <span className="metric-card__amount">{currentBalance}</span>
+                        <span className="metric-card__currency">USDT</span>
+                    </div>
+                    <p className="metric-card__hint">Обновится сразу после успешного пополнения</p>
+                </Card>
 
-            <section className="card deposit-card" aria-label="Форма пополнения">
-                <div className="deposit-card__content">
-                    <label className="deposit-field">
-                        <span className="deposit-field__label">Сумма пополнения</span>
+                <Card as="section" className="info-card">
+                    <p className="muted">Оплата произойдет через Telegram Wallet</p>
+                    <p className="info-card__accent">Мы сформируем заявку и отправим ссылку на оплату.</p>
+                    <div className="badge-row">
+                        <span className="pill pill--success">Авторассылка ссылки</span>
+                        <span className="pill">Без комиссии платформы</span>
+                    </div>
+                    <p className="info-card__status">
+                        Последнее пополнение: {lastDepositInfo.amount} USDT — {lastDepositInfo.status}
+                    </p>
+                </Card>
+            </div>
+
+            <Card as="section" className="form-card" aria-label="Форма пополнения">
+                <div className="form-grid">
+                    <label className="form-field">
+                        <span className="form-field__label">Сумма пополнения</span>
                         <input
                             type="number"
                             min="0"
@@ -49,19 +66,19 @@ export default function DepositPage() {
                             placeholder="Сумма в USDT"
                             value={amount}
                             onChange={(event) => setAmount(event.target.value)}
-                            className="deposit-field__input"
+                            className="form-field__input"
                             inputMode="decimal"
                         />
                     </label>
 
-                    <div className="deposit-quick">
-                        <span className="deposit-quick__label">Быстрый выбор</span>
-                        <div className="deposit-quick__buttons">
+                    <div className="form-field">
+                        <span className="form-field__label">Быстрый выбор</span>
+                        <div className="pill-group">
                             {quickAmounts.map((value) => (
                                 <button
                                     key={value}
                                     type="button"
-                                    className="deposit-quick__button"
+                                    className="pill pill--interactive"
                                     onClick={() => handleQuickAmount(value)}
                                 >
                                     {value} USDT
@@ -69,23 +86,12 @@ export default function DepositPage() {
                             ))}
                         </div>
                     </div>
-
-                    <button type="button" className="deposit-action" onClick={handleCreateDeposit}>
-                        Создать пополнение
-                    </button>
                 </div>
 
-                <div className="deposit-info" aria-label="Информация о пополнении">
-                    <div className="deposit-info__text">
-                        Оплата будет происходить через <strong>Telegram Wallet</strong>. После
-                        создания заявки вы получите ссылку на оплату.
-                    </div>
-                    <div className="deposit-info__status">
-                        Последнее пополнение: {lastDepositInfo.amount} USDT, статус: {" "}
-                        <span className="deposit-info__status-badge">{lastDepositInfo.status}</span>
-                    </div>
-                </div>
-            </section>
+                <Button type="button" variant="primary" fullWidth onClick={handleCreateDeposit}>
+                    Создать пополнение
+                </Button>
+            </Card>
         </div>
     );
 }

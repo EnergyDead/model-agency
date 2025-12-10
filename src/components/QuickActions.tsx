@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import Button from "./ui/Button";
+import Card from "./ui/Card";
+import SectionTitle from "./ui/SectionTitle";
 
 const actions = [
     { label: "Пополнить", to: "/deposit" },
@@ -8,18 +10,22 @@ const actions = [
 
 export default function QuickActions() {
     return (
-        <section className="card quick-actions">
-            <div className="quick-actions__header">
-                <h2 className="quick-actions__title">Быстрые действия</h2>
-                <p className="quick-actions__subtitle">Управляйте балансом в пару кликов</p>
-            </div>
+        <Card as="section" className="quick-actions" aria-labelledby="quick-actions-title">
+            <SectionTitle
+                title="Быстрые действия"
+                subtitle="Основные операции под рукой"
+                size="md"
+                as="h2"
+                align="left"
+            />
             <div className="quick-actions__list">
                 {actions.map((action) => (
-                    <Link key={action.to} to={action.to} className="quick-actions__button">
+                    <Button key={action.to} as="link" to={action.to} variant="secondary" fullWidth>
                         {action.label}
-                    </Link>
+                    </Button>
                 ))}
             </div>
-        </section>
+            <p className="quick-actions__hint">Оплата и вывод проходят через Telegram Wallet</p>
+        </Card>
     );
 }

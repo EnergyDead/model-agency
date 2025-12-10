@@ -1,3 +1,7 @@
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import SectionTitle from "../components/ui/SectionTitle";
+
 const operations = [
     {
         id: "1",
@@ -48,85 +52,83 @@ const operationTypeMeta: Record<
 
 export default function HistoryPage() {
     return (
-        <div className="history-page">
-            <header className="history-header">
-                <h1 className="history-title">История операций</h1>
-                <p className="history-subtitle">
-                    Быстрый обзор депозитов, выводов и начислений по вашему счету
-                </p>
-            </header>
+        <div className="page-shell">
+            <SectionTitle
+                eyebrow="Данные"
+                title="История операций"
+                subtitle="Быстрый обзор депозитов, выводов и начислений"
+            />
 
-            <section className="card history-filters" aria-label="Фильтры истории">
-                <div className="history-filters__group">
-                    <label className="history-filters__label" htmlFor="type-filter">
-                        Тип операции
-                    </label>
-                    <select id="type-filter" className="history-filters__select" defaultValue="all">
-                        <option value="all">Все</option>
-                        <option value="deposit">Депозиты</option>
-                        <option value="withdraw">Выводы</option>
-                        <option value="income">Доход</option>
-                        <option value="fee">Комиссии</option>
-                    </select>
-                </div>
-
-                <div className="history-filters__group">
-                    <span className="history-filters__label">Период</span>
-                    <div className="history-period">
-                        <button type="button" className="history-period__button history-period__button--active">
-                            7 дней
-                        </button>
-                        <button type="button" className="history-period__button">
-                            30 дней
-                        </button>
+            <Card as="section" className="filter-card" aria-label="Фильтры истории">
+                <div className="filter-grid">
+                    <div className="form-field">
+                        <label className="form-field__label" htmlFor="type-filter">
+                            Тип операции
+                        </label>
+                        <select id="type-filter" className="form-field__input">
+                            <option value="all">Все</option>
+                            <option value="deposit">Депозиты</option>
+                            <option value="withdraw">Выводы</option>
+                            <option value="income">Доход</option>
+                            <option value="fee">Комиссии</option>
+                        </select>
                     </div>
-                </div>
-            </section>
 
-            <section className="card history-card" aria-label="Список операций">
-                <div className="history-card__header">
-                    <h2 className="history-card__title">Последние операции</h2>
-                    <span className="history-card__hint">Данные обновятся после подключения API</span>
-                </div>
+                    <div className="filter-period">
+                        <span className="form-field__label">Период</span>
+                        <div className="pill-group">
+                            <button type="button" className="pill pill--interactive pill--active">
+                                7 дней
+                            </button>
+                            <button type="button" className="pill pill--interactive">30 дней</button>
+                        </div>
+                    </div>
 
-                <div className="history-timeline" role="list">
+                    <Button type="button" variant="ghost" className="filter-reset">
+                        Сбросить
+                    </Button>
+                </div>
+            </Card>
+
+            <Card as="section" className="history-card" aria-label="Список операций">
+                <SectionTitle
+                    title="Последние операции"
+                    subtitle="Данные обновятся после подключения API"
+                    size="md"
+                    as="h2"
+                    align="left"
+                />
+
+                <div className="timeline" role="list">
                     {operations.map((operation) => {
                         const meta = operationTypeMeta[operation.type];
                         const isPositive = meta.tone === "positive";
                         const amountPrefix = isPositive ? "+" : "−";
 
                         return (
-                            <article key={operation.id} className="history-item" role="listitem">
-                                <div className="history-item__indicator" aria-hidden="true" />
-                                <div className="history-item__content">
-                                    <div className="history-item__row">
-                                        <div className="history-item__type-group">
-                                            <span
-                                                className={`history-item__type history-item__type--${meta.accent}`}
-                                                aria-label={`Тип: ${meta.label}`}
-                                            >
-                                                {meta.label}
-                                            </span>
-                                            <span className="history-item__datetime">{operation.datetime}</span>
+                            <article key={operation.id} className="timeline__item" role="listitem">
+                                <div className="timeline__badge" aria-hidden />
+                                <div className="timeline__content">
+                                    <div className="timeline__row">
+                                        <div className="timeline__labels">
+                                            <span className={`badge badge--${meta.accent}`}>{meta.label}</span>
+                                            <span className="timeline__datetime">{operation.datetime}</span>
                                         </div>
-                                        <div
-                                            className={`history-item__amount history-item__amount--${meta.tone}`}
-                                            aria-label={`Сумма: ${amountPrefix}${operation.amount} USDT`}
-                                        >
-                                            <span className="history-item__amount-value">
+                                        <div className={`timeline__amount timeline__amount--${meta.tone}`}>
+                                            <span className="timeline__value">
                                                 {amountPrefix}
                                                 {operation.amount}
                                             </span>
-                                            <span className="history-item__currency">USDT</span>
+                                            <span className="timeline__currency">USDT</span>
                                         </div>
                                     </div>
-                                    <p className="history-item__comment">{operation.comment}</p>
+                                    <p className="timeline__comment">{operation.comment}</p>
                                 </div>
                             </article>
                         );
                     })}
                 </div>
-            </section>
+            </Card>
         </div>
     );
 }

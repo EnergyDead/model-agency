@@ -1,4 +1,7 @@
 import { useMemo, useState } from "react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import SectionTitle from "../components/ui/SectionTitle";
 
 type WithdrawHistoryItem = {
     id: string;
@@ -39,33 +42,36 @@ export default function WithdrawPage() {
     };
 
     return (
-        <div className="withdraw-page">
-            <header className="withdraw-header">
-                <h1 className="withdraw-title">Вывод средств</h1>
-                <p className="withdraw-subtitle">Переведите заработанные средства в удобный кошелек</p>
-            </header>
+        <div className="page-shell">
+            <SectionTitle
+                eyebrow="Операции"
+                title="Вывод средств"
+                subtitle="Переведите заработанные средства в удобный кошелёк"
+            />
 
-            <section className="card withdraw-card withdraw-balance-card" aria-label="Текущий баланс и доступный вывод">
-                <div className="withdraw-balance">
-                    <div className="withdraw-card__label">Текущий баланс</div>
-                    <div className="withdraw-card__value">
-                        <span className="withdraw-card__amount">{currentBalance}</span>
-                        <span className="withdraw-card__currency">USDT</span>
+            <div className="two-column-grid">
+                <Card as="section" className="metric-card" variant="highlight">
+                    <p className="metric-card__label">Текущий баланс</p>
+                    <div className="metric-card__value">
+                        <span className="metric-card__amount">{currentBalance}</span>
+                        <span className="metric-card__currency">USDT</span>
                     </div>
-                </div>
-                <div className="withdraw-available">
-                    <div className="withdraw-card__label">Доступно к выводу</div>
-                    <div className="withdraw-card__value">
-                        <span className="withdraw-card__amount">{maxAvailable}</span>
-                        <span className="withdraw-card__currency">USDT</span>
-                    </div>
-                </div>
-            </section>
+                </Card>
 
-            <section className="card withdraw-card" aria-label="Форма вывода">
-                <div className="withdraw-card__content">
-                    <label className="withdraw-field">
-                        <span className="withdraw-field__label">Сумма вывода</span>
+                <Card as="section" className="metric-card">
+                    <p className="metric-card__label">Доступно к выводу</p>
+                    <div className="metric-card__value">
+                        <span className="metric-card__amount">{maxAvailable}</span>
+                        <span className="metric-card__currency">USDT</span>
+                    </div>
+                    <p className="metric-card__hint">Ограничения установлены настройками пула</p>
+                </Card>
+            </div>
+
+            <Card as="section" className="form-card" aria-label="Форма вывода">
+                <div className="form-grid">
+                    <label className="form-field">
+                        <span className="form-field__label">Сумма вывода</span>
                         <input
                             type="number"
                             min="0"
@@ -73,60 +79,52 @@ export default function WithdrawPage() {
                             placeholder="Сумма в USDT"
                             value={amount}
                             onChange={(event) => setAmount(event.target.value)}
-                            className="withdraw-field__input"
+                            className="form-field__input"
                             inputMode="decimal"
                         />
                     </label>
 
-                    <label className="withdraw-field">
-                        <span className="withdraw-field__label">Адрес для получения (опционально)</span>
+                    <label className="form-field">
+                        <span className="form-field__label">Адрес для получения (опционально)</span>
                         <input
                             type="text"
                             placeholder="Адрес кошелька / TG Wallet"
                             value={address}
                             onChange={(event) => setAddress(event.target.value)}
-                            className="withdraw-field__input"
+                            className="form-field__input"
                         />
                     </label>
-
-                    <button type="button" className="withdraw-action" onClick={handleCreateWithdraw}>
-                        Создать заявку на вывод
-                    </button>
                 </div>
 
-                <div className="withdraw-info" aria-label="Информация о выводе">
-                    <div className="withdraw-info__text">
-                        Заявка обрабатывается в течение 10–15 минут. Проверьте корректность суммы и
-                        адреса перед подтверждением.
-                    </div>
-                </div>
-            </section>
+                <Button type="button" variant="primary" fullWidth onClick={handleCreateWithdraw}>
+                    Создать заявку на вывод
+                </Button>
 
-            <section className="card withdraw-card" aria-label="История выводов">
-                <div className="withdraw-history__header">
-                    <h2 className="withdraw-history__title">История выводов (последние 3)</h2>
-                    <span className="withdraw-history__hint">Данные обновятся после интеграции с API</span>
+                <div className="info-banner" role="status">
+                    Заявка обрабатывается в течение 10–15 минут. Проверьте корректность суммы и адреса перед
+                    подтверждением.
                 </div>
+            </Card>
 
-                <div className="withdraw-history__list">
+            <Card as="section" className="history-card" aria-label="История выводов">
+                <SectionTitle title="История выводов (последние 3)" size="md" as="h2" align="left" />
+                <div className="history-list">
                     {lastWithdrawals.map((item) => (
-                        <article key={item.id} className="withdraw-history__item">
-                            <div className="withdraw-history__meta">
-                                <span className="withdraw-history__date">{item.date}</span>
-                                <span
-                                    className={`withdraw-history__status withdraw-history__status--${historyStatusClassMap[item.status]}`}
-                                >
-                                    {item.status}
-                                </span>
+                        <article key={item.id} className="history-row">
+                            <div>
+                                <p className="history-row__date">{item.date}</p>
+                                <p className="history-row__amount">
+                                    {item.amount}
+                                    <span className="history-row__currency">USDT</span>
+                                </p>
                             </div>
-                            <div className="withdraw-history__amount">
-                                <span className="withdraw-history__value">{item.amount}</span>
-                                <span className="withdraw-history__currency">USDT</span>
-                            </div>
+                            <span className={`history-row__status history-row__status--${historyStatusClassMap[item.status]}`}>
+                                {item.status}
+                            </span>
                         </article>
                     ))}
                 </div>
-            </section>
+            </Card>
         </div>
     );
 }
