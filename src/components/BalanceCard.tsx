@@ -1,3 +1,5 @@
+import Card from "./ui/Card";
+
 interface BalanceCardProps {
     balance?: string;
     poolShare?: string;
@@ -10,19 +12,25 @@ export default function BalanceCard({
     unitPrice = "1.07 USDT",
 }: BalanceCardProps) {
     return (
-        <section className="card balance-card">
-            <div className="balance-card__label">Ваш баланс</div>
+        <Card as="section" className="balance-card" variant="highlight" aria-label="Ваш баланс">
+            <div className="balance-card__header">
+                <p className="muted">Баланс счёта</p>
+                <span className="balance-card__chip">USDT Pool</span>
+            </div>
             <div className="balance-card__value">
                 <span className="balance-card__amount">{balance}</span>
                 <span className="balance-card__currency">USDT</span>
             </div>
-            <div className="balance-card__meta">
-                <span className="balance-card__meta-item">Доля пула: {poolShare}</span>
-                <span className="balance-card__meta-separator" aria-hidden="true">
-                    •
-                </span>
-                <span className="balance-card__meta-item">Цена unit: {unitPrice}</span>
+            <div className="balance-card__meta" aria-label="Дополнительные показатели">
+                <div className="meta-item">
+                    <span className="meta-item__label">Доля пула</span>
+                    <span className="meta-item__value">{poolShare}</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-item__label">Цена unit</span>
+                    <span className="meta-item__value">{unitPrice}</span>
+                </div>
             </div>
-        </section>
+        </Card>
     );
 }
