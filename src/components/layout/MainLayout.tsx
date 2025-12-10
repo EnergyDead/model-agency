@@ -7,7 +7,9 @@ export default function MainLayout() {
         <div className="main-layout">
             <TopBar />
             <main className="page-content">
-                <Outlet />
+                <div className="page-content__inner">
+                    <Outlet />
+                </div>
             </main>
             <BottomNav />
         </div>
