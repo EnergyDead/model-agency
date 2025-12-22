@@ -7,6 +7,13 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## News JSON
+
+В корне репозитория есть папка `/news`, где хранятся JSON-файлы новостей.
+
+- Нумерация работает по шаблону `1.json`, `2.json`, `3.json`, … — каждый следующий номер соответствует следующей новости.
+- Самой новой считается новость с самым большим номером файла.
+
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
