@@ -28,6 +28,10 @@ export default function FeedPage() {
     const currentPage = isValidPage ? parsedPage : 1;
 
     useEffect(() => {
+        document.title = "genz sentry — News";
+    }, []);
+
+    useEffect(() => {
         if (!isValidPage || rawPage === null) {
             setSearchParams({ page: String(currentPage) }, { replace: true });
         }
