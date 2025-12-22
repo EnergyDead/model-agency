@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { newsItems } from "../generated/newsIndex";
@@ -32,6 +32,12 @@ export default function NewsPage() {
     const newsId = Number(id);
     const newsItem = newsItems.find((item) => item.id === newsId);
     const newsContent = newsContentById[newsId];
+
+    useEffect(() => {
+        document.title = newsItem
+            ? `${newsItem.title} — genz sentry`
+            : "News — genz sentry";
+    }, [newsItem]);
 
     const paragraphs = useMemo(() => {
         if (!newsContent?.content) {
