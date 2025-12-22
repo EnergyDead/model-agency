@@ -107,9 +107,6 @@ export default function FeedPage() {
                                                 {item.summary}
                                             </p>
                                         </div>
-                                        <span className="news-card__read">
-                                            Read →
-                                        </span>
                                     </div>
                                 </Link>
                             ))}
