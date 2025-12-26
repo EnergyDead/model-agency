@@ -1,109 +1,127 @@
-import { useEffect, useMemo } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import Header from "../components/Header";
-import { newsItems } from "../generated/newsIndex";
+import { useEffect, useMemo, useRef } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import CaseCard from "../components/CaseCard";
+import Drawer from "../components/Drawer";
+import NewsReader from "../components/NewsReader";
+import Pagination from "../components/Pagination";
+import { findNewsById, loadAllNews } from "../lib/news";
 
-type NewsContent = {
-    title: string;
-    date: string;
-    summary: string;
-    content: string;
-};
-
-type FeedNavigationState = {
-    fromPage?: number;
-    fromScrollY?: number;
-};
-
-const newsContentById = Object.fromEntries(
-    Object.entries(
-        import.meta.glob("../../news/*.json", { eager: true }),
-    ).map(([path, data]) => {
-        const match = path.match(/(\d+)\.json$/);
-        return [Number(match?.[1]), data as NewsContent];
-    }),
-);
+const PAGE_SIZE = 9;
 
 export default function NewsPage() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const location = useLocation();
-    const navigationState = location.state as FeedNavigationState | null;
-    const newsId = Number(id);
-    const newsItem = newsItems.find((item) => item.id === newsId);
-    const newsContent = newsContentById[newsId];
+    const [searchParams, setSearchParams] = useSearchParams();
+    const scrollSnapshot = useRef(0);
+    const wasDrawerOpen = useRef(false);
+
+    const allNews = useMemo(() => loadAllNews(), []);
+
+    const rawPage = searchParams.get("page");
+    const parsedPage = Number(rawPage);
+    const totalPages = Math.max(1, Math.ceil(allNews.length / PAGE_SIZE));
+    const isValidPage =
+        Number.isInteger(parsedPage) &&
+        parsedPage >= 1 &&
+        parsedPage <= totalPages;
+    const currentPage = isValidPage ? parsedPage : 1;
 
     useEffect(() => {
-        document.title = newsItem
-            ? `${newsItem.title} — genz sentry`
-            : "News — genz sentry";
-    }, [newsItem]);
-
-    const paragraphs = useMemo(() => {
-        if (!newsContent?.content) {
-            return [] as string[];
+        if (!isValidPage || rawPage === null) {
+            setSearchParams({ page: String(currentPage) }, { replace: true });
         }
+    }, [currentPage, isValidPage, rawPage, setSearchParams]);
 
-        return newsContent.content
-            .split(/\n\s*\n/)
-            .map((paragraph) => paragraph.trim())
-            .filter(Boolean);
-    }, [newsContent?.content]);
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    const pageItems = allNews.slice(startIndex, startIndex + PAGE_SIZE);
 
-    const handleBack = () => {
-        if (navigationState?.fromPage) {
-            navigate(`/?page=${navigationState.fromPage}`, {
-                state: navigationState,
+    const selectedId = id ? Number(id) : undefined;
+    const selectedNews =
+        selectedId && Number.isFinite(selectedId)
+            ? findNewsById(selectedId)
+            : undefined;
+    const isDrawerOpen = Boolean(selectedNews);
+    const readerTitleId = selectedNews ? `news-title-${selectedNews.id}` : "";
+
+    useEffect(() => {
+        if (isDrawerOpen) {
+            scrollSnapshot.current = window.scrollY;
+        }
+    }, [isDrawerOpen]);
+
+    useEffect(() => {
+        if (!isDrawerOpen && wasDrawerOpen.current) {
+            window.requestAnimationFrame(() => {
+                window.scrollTo({ top: scrollSnapshot.current });
             });
+        }
+        wasDrawerOpen.current = isDrawerOpen;
+    }, [isDrawerOpen]);
+
+    useEffect(() => {
+        if (id && !selectedNews) {
+            navigate(`/news?page=${currentPage}`, { replace: true });
+        }
+    }, [currentPage, id, navigate, selectedNews]);
+
+    useEffect(() => {
+        if (selectedNews) {
+            document.title = `${selectedNews.title} — News`;
             return;
         }
+        document.title = "News — genz sentry";
+    }, [selectedNews]);
 
-        navigate("/?page=1");
+    const handleSelect = (newsId: number) => {
+        navigate(`/news/${newsId}?page=${currentPage}`);
     };
 
-    if (!newsItem) {
-        return (
-            <div className="app">
-                <Header title="News" />
-                <main className="content content--detail">
-                    <div className="not-found">
-                        <h2 className="not-found__title">404</h2>
-                        <p className="not-found__text">
-                            This news item was not found.
-                        </p>
-                        <Link className="back-button" to="/?page=1">
-                            Back to feed
-                        </Link>
-                    </div>
-                </main>
-            </div>
-        );
-    }
+    const handleClose = () => {
+        navigate(`/news?page=${currentPage}`);
+    };
+
+    const handlePageChange = (page: number) => {
+        const nextPage = Math.min(Math.max(page, 1), totalPages);
+        setSearchParams({ page: String(nextPage) });
+        if (selectedNews) {
+            navigate(`/news/${selectedNews.id}?page=${nextPage}`, {
+                replace: true,
+            });
+        }
+    };
 
     return (
-        <div className="app">
-            <Header title="News" />
-            <main className="content content--detail">
-                <button className="back-button" onClick={handleBack}>
-                    Back
-                </button>
-                <article className="news-detail">
-                    <header className="news-detail__header">
-                        <h1 className="news-detail__title">{newsItem.title}</h1>
-                        <p className="news-detail__date">{newsItem.date}</p>
-                    </header>
-                    <div className="news-detail__content">
-                        {paragraphs.map((paragraph, index) => (
-                            <p
-                                key={`${newsItem.id}-${index}`}
-                                className="news-detail__paragraph"
-                            >
-                                {paragraph}
-                            </p>
+        <div className="page">
+            <div className="page__container">
+                <header className="page__hero">
+                    <p className="hero__eyebrow">Curated Stories</p>
+                    <h1 className="hero__title">News</h1>
+                    <p className="hero__subtitle">
+                        Field reports, releases, and stories that shape our work.
+                        Explore the feed and open any piece to read without leaving
+                        the stream.
+                    </p>
+                </header>
+
+                <section className="news-layout">
+                    <div className="news-grid">
+                        {pageItems.map((item) => (
+                            <CaseCard key={item.id} item={item} onSelect={handleSelect} />
                         ))}
                     </div>
-                </article>
-            </main>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                </section>
+            </div>
+
+            <Drawer open={isDrawerOpen} onClose={handleClose} ariaTitleId={readerTitleId}>
+                {selectedNews && (
+                    <NewsReader news={selectedNews} onClose={handleClose} titleId={readerTitleId} />
+                )}
+            </Drawer>
         </div>
     );
 }
